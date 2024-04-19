@@ -86,7 +86,7 @@ class Ignore(ABC):
             return [x for x in obj if x not in black_list]
         if t is dict:
             return {k: obj[k] for k in obj if k not in black_list}
-        if t in black_list:
+        if obj in black_list:
             return t
         return obj
 
@@ -94,5 +94,5 @@ class Ignore(ABC):
     def _ignore_range(cls, obj, rule):
         t = type(obj)
         if t is int or t is float:
-            return rule[0] <= obj and obj <= rule[1]
+            return rule[0] <= obj <= rule[1]
         return obj
