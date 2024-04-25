@@ -86,8 +86,8 @@ class Ignore(ABC):
             return [x for x in obj if x not in black_list]
         if t is dict:
             return {k: obj[k] for k in obj if k not in black_list}
-        if obj in black_list:
-            return t
+        if black_list == [None, '*']:
+            return str if isinstance(obj, str) else None
         return obj
 
     @classmethod
